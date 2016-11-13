@@ -1,0 +1,130 @@
+/**
+  * what: top brand
+  * why: prominant display for the user
+  */
+.brand {
+  margin-top: 0; //reset h2
+  font-size: 3em;
+  text-align: center;
+  text-shadow: 0 -1px $color-black-transparent-70,
+  0 -2px $color-black-transparent-70; //embedded effect
+}
+
+/**
+  * what: the game board, it's shutter block that asks for user inputs
+  * why: show / hide based on status of the game
+  */
+.game {
+  position: relative; //parent for shutter that is absolutely positioned
+  margin: 0 auto; //center align
+
+  .shutter {
+    position: absolute; //overlay on top of game board
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: .5em;
+    //reverse the effect of closing shutter when the game is on
+    transition: color 300ms ease, transform 300ms ease 300ms;
+    border-radius: 5px;
+    background: $color-black-transparent-85;
+    font-size: 2em;
+    box-sizing: border-box;
+
+    .message {
+      text-align: center;
+    }
+
+    .keybindings { //keyboard shortcut text
+      font-size: .45em;
+      text-align: center;
+    }
+  }
+
+  &.on { //close shutter when game starts
+    .shutter {
+      /* text within the shutter shrinks on scale transform
+       * it doesn't look good, hence color is removed first
+       * and then the element is shrinked (after 300ms wait out)
+       */
+      transform: scaleY(0);
+      transition: color 300ms ease, transform 300ms ease 300ms;
+      color: $color-black-transparent-85;
+    }
+  }
+}
+
+/**
+  * what: game buttons / blocks and their relative styles when won/lost/tie
+  * why: clear indication to the user asking for inputs and feedback on game (won/lost/tie)
+  */
+button {
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  border: 0;
+  border-radius: 3px;
+  background: $color-shadow;
+  box-shadow: 0 0 8px 4px $color-black-transparent-70;
+  transition: background 300ms ease;
+
+  &#a {
+    background: $color-green;
+    &:active{
+      transition: background 300ms ease;
+      background: lighten($color-green,70%);
+    }
+  }
+  &#b {
+    background: $color-red;
+    &:active{
+      transition: background 300ms ease;
+      background: lighten($color-red,70%);
+    }
+  }
+  &#c {
+    background: $color-orange;
+    &:active{
+      transition: background 300ms ease;
+      background: lighten($color-orange,70%);
+    }
+  }
+  &#d {
+    background: $color-cyan;
+    &:active{
+      transition: background 300ms ease;
+      background: lighten($color-cyan,70%);
+    }
+  }
+
+}
+
+/**
+  * what: game status and relative styles when won/lost/tie
+  * why: feedback to user
+  */
+h2 {
+  &.status {
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+    padding: .6em;
+    border-radius: 5px;
+    color: $color-white-transparent-70;
+    text-align: center;
+    box-shadow: inset 0 0 8px 4px $color-black-transparent-70;
+    box-sizing: border-box;
+  }
+}
+
+
+.x {
+  background-image: url('../images/x.svg');
+  background-repeat: no-repeat;
+}
+
+.o {
+  background-image: url('../images/o.svg');
+  background-repeat: no-repeat;
+}
