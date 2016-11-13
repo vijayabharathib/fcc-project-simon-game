@@ -1,1 +1,143 @@
-html{height:100%}body{min-height:100%;margin:0;background:#41474c;color:#44c8e5;font-size:16px}@media (min-width:321px){body{padding-top:1em}}h1,h2,h3,h4{margin-bottom:5px}.container{max-width:320px;margin:0 auto;padding:10px;box-sizing:border-box}@media (min-width:321px){.container{border-radius:10px}}.brand{margin-top:0;font-size:3em;text-align:center;text-shadow:0 -1px rgba(0,0,0,.7),0 -2px rgba(0,0,0,.7)}.game{position:relative;margin:0 auto}.game .shutter{position:absolute;top:0;left:0;width:100%;height:100%;padding:.5em;-webkit-transition:color .3s ease,-webkit-transform .3s ease .3s;transition:color .3s ease,-webkit-transform .3s ease .3s;transition:color .3s ease,transform .3s ease .3s;transition:color .3s ease,transform .3s ease .3s,-webkit-transform .3s ease .3s;border-radius:5px;background:rgba(0,0,0,.85);font-size:2em;box-sizing:border-box}.game .shutter .message{text-align:center}.game .shutter .keybindings{font-size:.45em;text-align:center}.game.on .shutter{-webkit-transform:scaleY(0);transform:scaleY(0);-webkit-transition:color .3s ease,-webkit-transform .3s ease .3s;transition:color .3s ease,-webkit-transform .3s ease .3s;transition:color .3s ease,transform .3s ease .3s;transition:color .3s ease,transform .3s ease .3s,-webkit-transform .3s ease .3s;color:rgba(0,0,0,.85)}button{width:130px;height:130px;margin:10px;border:0;border-radius:3px;background:#323435;box-shadow:0 0 8px 4px rgba(0,0,0,.7);-webkit-transition:background .3s ease;transition:background .3s ease}button#a{background:#060}button#a:active{-webkit-transition:background .3s ease;transition:background .3s ease;background:#cfc}button#b{background:#a09}button#b:active{-webkit-transition:background .3s ease;transition:background .3s ease;background:#fff}button#c{background:#c90}button#c:active{-webkit-transition:background .3s ease;transition:background .3s ease;background:#fff}button#d{background:#09a}button#d:active{-webkit-transition:background .3s ease;transition:background .3s ease;background:#fff}h2.status{display:inline-block;width:100%;margin:0 auto;padding:.6em;border-radius:5px;color:hsla(0,0%,100%,.7);text-align:center;box-shadow:inset 0 0 8px 4px rgba(0,0,0,.7);box-sizing:border-box}.x{background-image:url(../images/x.svg)}.o,.x{background-repeat:no-repeat}.o{background-image:url(../images/o.svg)}
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background: #41474c;
+  color: #44c8e5;
+  font-size: 16px; }
+  @media (min-width: 321px) {
+    body {
+      padding-top: 1em; } }
+
+h1,
+h2,
+h3,
+h4 {
+  margin-bottom: 5px; }
+
+.container {
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box; }
+  @media (min-width: 321px) {
+    .container {
+      border-radius: 10px; } }
+
+/**
+  * what: top brand
+  * why: prominant display for the user
+  */
+.brand {
+  margin-top: 0;
+  font-size: 3em;
+  text-align: center;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.7), 0 -2px rgba(0, 0, 0, 0.7); }
+
+/**
+  * what: the game board, it's shutter block that asks for user inputs
+  * why: show / hide based on status of the game
+  */
+.game {
+  position: relative;
+  margin: 0 auto; }
+  .game .shutter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: .5em;
+    -webkit-transition: color 300ms ease, -webkit-transform 300ms ease 300ms;
+    transition: color 300ms ease, -webkit-transform 300ms ease 300ms;
+    transition: color 300ms ease, transform 300ms ease 300ms;
+    transition: color 300ms ease, transform 300ms ease 300ms, -webkit-transform 300ms ease 300ms;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.85);
+    font-size: 2em;
+    box-sizing: border-box; }
+    .game .shutter .message {
+      text-align: center; }
+    .game .shutter .keybindings {
+      font-size: .45em;
+      text-align: center; }
+  .game.on .shutter {
+    /* text within the shutter shrinks on scale transform
+       * it doesn't look good, hence color is removed first
+       * and then the element is shrinked (after 300ms wait out)
+       */
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    -webkit-transition: color 300ms ease, -webkit-transform 300ms ease 300ms;
+    transition: color 300ms ease, -webkit-transform 300ms ease 300ms;
+    transition: color 300ms ease, transform 300ms ease 300ms;
+    transition: color 300ms ease, transform 300ms ease 300ms, -webkit-transform 300ms ease 300ms;
+    color: rgba(0, 0, 0, 0.85); }
+
+/**
+  * what: game buttons / blocks and their relative styles when won/lost/tie
+  * why: clear indication to the user asking for inputs and feedback on game (won/lost/tie)
+  */
+button {
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+  border: 0;
+  border-radius: 3px;
+  background: #323435;
+  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.7); }
+  button#start {
+    width: 100%;
+    height: 2em;
+    font-size: 2em;
+    box-sizing: border-box;
+    margin: 0 auto; }
+  button#a {
+    background: #060; }
+    button#a:active, button#a.js-active {
+      -webkit-transition: background 150ms ease;
+      transition: background 150ms ease;
+      background: #ccffcc; }
+  button#b {
+    background: #a09; }
+    button#b:active, button#b.js-active {
+      -webkit-transition: background 150ms ease;
+      transition: background 150ms ease;
+      background: #ff77f1; }
+  button#c {
+    background: #c90; }
+    button#c:active, button#c.js-active {
+      -webkit-transition: background 150ms ease;
+      transition: background 150ms ease;
+      background: #ffe699; }
+  button#d {
+    background: #09a; }
+    button#d:active, button#d.js-active {
+      -webkit-transition: background 150ms ease;
+      transition: background 150ms ease;
+      background: #77f1ff; }
+
+/**
+  * what: game status and relative styles when won/lost/tie
+  * why: feedback to user
+  */
+h2.status {
+  display: inline-block;
+  width: 100%;
+  margin: 0 auto;
+  padding: .6em;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  box-shadow: inset 0 0 8px 4px rgba(0, 0, 0, 0.7);
+  box-sizing: border-box; }
+
+.x {
+  background-image: url("../images/x.svg");
+  background-repeat: no-repeat; }
+
+.o {
+  background-image: url("../images/o.svg");
+  background-repeat: no-repeat; }

@@ -12,7 +12,7 @@ gulp.task('style',function() {
 	gulp.src('./app/styles/**/*.scss') //take all .scss files from styles folder
 		.pipe(sass().on('error',sass.logError)) //convert them from sass to css
 		.pipe(autoprefixer()) //apply vendor prefixes
-		.pipe(nano()) //minify the css
+		//.pipe(nano()) //minify the css
 		.pipe(gulp.dest('./public/styles/')) //write to styles folder
 		.pipe(browserSync.reload({ //reload browser
 			stream:true
@@ -30,7 +30,7 @@ gulp.task('browserSync', function() {
 gulp.task('scramble',function(){
 	gulp.src('./app/scripts/main.js')
 		.pipe(sourcemaps.init())
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./public/scripts/'));
 });
