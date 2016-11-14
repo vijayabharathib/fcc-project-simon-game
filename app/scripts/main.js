@@ -29,12 +29,22 @@ function prepareBotSequence(){
   window.clearInterval(replayIntervalID);
   replayIntervalID=window.setInterval(replayBotSequence,1000);
 }
-
+function sound(id){
+  var audio={
+    a: "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
+    b: "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3",
+    c: "https://s3.amazonaws.com/freecodecamp/simonSound3.mp3",
+    d: "https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"
+  };
+  var chime=new Audio(audio[id]);
+  chime.play();
+}
 function replayBotSequence(){
   if(replayIndex<=botSequence.length){
     var nextBlockID=botSequence[replayIndex];
     var previousBlockID=botSequence[replayIndex-1];
     if(nextBlockID){
+      sound(nextBlockID);
       activateBlock(nextBlockID);
       document.querySelector("#counter").innerText=replayIndex+1;
     }
@@ -62,6 +72,9 @@ function deactivateBlock(id){
   */
 function startButtonHandler(){
   var startGame=function(){
+    botSequence="";
+    var start=document.querySelector("#start");
+    start.innerText="Reset";
     prepareBotSequence();
   };
   var start=document.querySelector("#start");
@@ -77,18 +90,27 @@ function processPlayerInput(){
     */
   var gamePadClickHandler=function(){
     playerSequence+=this.id;
+    sound(this.id);
     document.querySelector("#counter").innerText=playerSequence.length;
     var result=evaluateGameStatus();
     if(result==="success"){
-
-      playerSequence="";//let the player start from scratch;
+      playerSequence="";
       prepareBotSequence();//to allow key press/click UX effects to finish;
     }else if(result==="incorrect input"){
       playerSequence=""; //give the player another chance to try the sequence
       document.querySelector("#counter").innerText=00;
+      var strict=document.querySelector(".strict .toggle").classList.contains("on");
+      if(strict){
+        playerSequence="";
+        botSequence="";
+        var start=document.querySelector("#start");
+        start.innerText="Restart";
+      }
     }else if(result==="win"){
       playerSequence="";
       botSequence="";
+      var start=document.querySelector("#start");
+      start.innerText="Restart";
     }else if(result==="game still on"){
     }
   };
@@ -106,6 +128,7 @@ function processPlayerInput(){
       result="game still on";
     } else if(psLength<=bsLength && playerSequence!==botSequence.substring(0,psLength)){
       result="incorrect input";
+
     }
     console.log("evaluation status:"+result);
     return result;
@@ -118,12 +141,17 @@ function processPlayerInput(){
   for(var i=0;i<buttons.length;i++){
     buttons[i].onclick=gamePadClickHandler;
   }
-
-  function chime(){
-    var chime=new Audio("public/audio/chime.ogg");
-    chime.play();
-  }
+  var toggleHandler=function(){
+    var toggle=document.querySelector(".strict .toggle");
+    toggle.classList.toggle("on");
+    toggle.classList.toggle("off");
+  };
+  var toggles=document.querySelectorAll(".strict .toggle span");
+  toggles[0].onclick=toggleHandler;
+  toggles[1].onclick=toggleHandler;
 }
+
+
 
 function setupKeyHandlers(){
   document.onkeypress=function(event){
