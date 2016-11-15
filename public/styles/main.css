@@ -1,10 +1,14 @@
+/**
+ * google-material-color v1.2.6
+ * https://github.com/danlevan/google-material-color
+ */
 html {
   height: 100%; }
 
 body {
   min-height: 100%;
   margin: 0;
-  background: #41474c;
+  background: #263238;
   color: #44c8e5;
   font-size: 16px; }
   @media (min-width: 321px) {
@@ -90,33 +94,33 @@ button.keypad {
   box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.7);
   outline: none; }
   button.keypad#a {
-    background: #060;
+    background: #303F9F;
     border-radius: 130px 3px 3px 3px; }
     button.keypad#a:active, button.keypad#a.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
-      background: #ccffcc; }
+      background: #7986CB; }
   button.keypad#b {
-    background: #a09;
+    background: #C2185B;
     border-radius: 3px 130px 3px 3px; }
     button.keypad#b:active, button.keypad#b.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
-      background: #ff77f1; }
+      background: #F06292; }
   button.keypad#c {
-    background: #c90;
+    background: #0097A7;
     border-radius: 3px 3px 3px 130px; }
     button.keypad#c:active, button.keypad#c.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
-      background: #ffe699; }
+      background: #4DD0E1; }
   button.keypad#d {
-    background: #09a;
+    background: #E64A19;
     border-radius: 3px 3px 130px 3px; }
     button.keypad#d:active, button.keypad#d.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
-      background: #77f1ff; }
+      background: #FF8A65; }
 
 .dashboard {
   position: relative;
@@ -159,7 +163,7 @@ button.keypad {
 }*/
 #counter {
   position: absolute;
-  background: #41474c;
+  background: #263238;
   top: 85px;
   left: 90px;
   width: 100px;

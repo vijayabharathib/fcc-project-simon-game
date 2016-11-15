@@ -113,6 +113,7 @@ function processPlayerInput(){
       }
     }else if(result==="win"){
       counter.innerText="Win";
+      counter.parentNode.classList.remove("error");
       counter.parentNode.classList.add("won");
       playerSequence="";
       botSequence="";

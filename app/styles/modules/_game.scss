@@ -69,35 +69,35 @@ button.keypad {
   box-shadow: 0 0 8px 4px $color-black-transparent-70;
   outline: none;
   &#a {
-    background: $color-green;
+    background: $color-block-a;
     border-radius: 130px 3px 3px 3px;
     &:active,&.js-active{
       transition: background 150ms ease;
-      background: lighten($color-green,70%);
+      background: $color-block-a-light;
     }
   }
   &#b {
-    background: $color-red;
+    background: $color-block-b;
     border-radius: 3px 130px 3px 3px;
     &:active,&.js-active{
       transition: background 150ms ease;
-      background: lighten($color-red, 40%);
+      background: $color-block-b-light;
     }
   }
   &#c {
-    background: $color-orange;
+    background: $color-block-c;
     border-radius: 3px 3px 3px 130px;
     &:active,&.js-active{
       transition: background 150ms ease;
-      background: lighten($color-orange, 40%);
+      background: $color-block-c-light;
     }
   }
   &#d {
-    background: $color-cyan;
+    background: $color-block-d;
     border-radius: 3px 3px 130px 3px;
     &:active,&.js-active{
       transition: background 150ms ease;
-      background: lighten($color-cyan, 40%);
+      background: $color-block-d-light;
     }
   }
 
