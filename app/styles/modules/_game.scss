@@ -67,10 +67,10 @@ button.keypad {
   border-radius: 3px;
   background: $color-shadow;
   box-shadow: 0 0 8px 4px $color-black-transparent-70;
-  //transition: background 150ms ease;
-
+  outline: none;
   &#a {
     background: $color-green;
+    border-radius: 130px 3px 3px 3px;
     &:active,&.js-active{
       transition: background 150ms ease;
       background: lighten($color-green,70%);
@@ -78,6 +78,7 @@ button.keypad {
   }
   &#b {
     background: $color-red;
+    border-radius: 3px 130px 3px 3px;
     &:active,&.js-active{
       transition: background 150ms ease;
       background: lighten($color-red, 40%);
@@ -85,6 +86,7 @@ button.keypad {
   }
   &#c {
     background: $color-orange;
+    border-radius: 3px 3px 3px 130px;
     &:active,&.js-active{
       transition: background 150ms ease;
       background: lighten($color-orange, 40%);
@@ -92,6 +94,7 @@ button.keypad {
   }
   &#d {
     background: $color-cyan;
+    border-radius: 3px 3px 130px 3px;
     &:active,&.js-active{
       transition: background 150ms ease;
       background: lighten($color-cyan, 40%);
@@ -102,6 +105,7 @@ button.keypad {
 
 
 .dashboard {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,14 +121,52 @@ button.keypad {
     font-size: .5em;
     padding: 5px;
   }
+
+}
+
+/*#counter {
+  position: absolute;
+  margin: 0;
+  line-height: .7em;
+  font-size: 1em;
+  box-shadow: inset 0 0 8px 4px $color-black-transparent-70;
+  padding: 10px;
+  width: 1em;
+  border-radius: 5px;
+  &.won{
+    color: $color-green;
+  }
+  &.error{
+    color: $color-red;
+  }
+}*/
+
+#counter {
+  position: absolute;
+  background: $color-background;
+  top: 85px;
+  left: 90px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  line-height: .7em;
+  font-size: 1em;
+  box-shadow: inset 0 0 8px 4px $color-black-transparent-70;
+  padding: 10px;
+
   h2{
-    margin: 0;
-    line-height: .7em;
-    font-size: 1em;
-    box-shadow: inset 0 0 8px 4px $color-black-transparent-70;
-    padding: 10px;
-    width: 1em;
-    border-radius: 5px;
+    margin: 45px 15px;
+    display: inline-block;
+    line-height: .8em;
+    text-align: center;
+    width: 3em;
+  }
+
+  &.won{
+    color: $color-green;
+  }
+  &.error{
+    color: $color-red;
   }
 }
 

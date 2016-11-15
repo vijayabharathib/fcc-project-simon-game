@@ -46,7 +46,7 @@ function replayBotSequence(){
     if(nextBlockID){
       sound(nextBlockID);
       activateBlock(nextBlockID);
-      document.querySelector("#counter").innerText=replayIndex+1;
+      document.querySelector("#counter h2").innerText=replayIndex+1;
     }
     if(previousBlockID)
       deactivateBlock(previousBlockID);
@@ -75,6 +75,9 @@ function startButtonHandler(){
     botSequence="";
     var start=document.querySelector("#start");
     start.innerText="Reset";
+    var counter=document.querySelector("#counter");
+    counter.classList.remove("error");
+    counter.classList.remove("won");
     prepareBotSequence();
   };
   var start=document.querySelector("#start");
@@ -91,15 +94,17 @@ function processPlayerInput(){
   var gamePadClickHandler=function(){
     playerSequence+=this.id;
     sound(this.id);
-    document.querySelector("#counter").innerText=playerSequence.length;
+    var counter=document.querySelector("#counter>h2");
+    console.log("counter:"+counter.innerText+"parent:"+counter.parentNode.id);
     var result=evaluateGameStatus();
     if(result==="success"){
       playerSequence="";
       prepareBotSequence();//to allow key press/click UX effects to finish;
     }else if(result==="incorrect input"){
       playerSequence=""; //give the player another chance to try the sequence
-      document.querySelector("#counter").innerText=00;
+      counter.innerText=00;
       var strict=document.querySelector(".strict .toggle").classList.contains("on");
+      counter.parentNode.classList.add("error");
       if(strict){
         playerSequence="";
         botSequence="";
@@ -107,11 +112,14 @@ function processPlayerInput(){
         start.innerText="Restart";
       }
     }else if(result==="win"){
+      counter.innerText="Win";
+      counter.parentNode.classList.add("won");
       playerSequence="";
       botSequence="";
       var start=document.querySelector("#start");
       start.innerText="Restart";
     }else if(result==="game still on"){
+      counter.innerText=playerSequence.length;
     }
   };
 
