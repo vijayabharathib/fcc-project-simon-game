@@ -80,43 +80,52 @@ h4 {
     transition: color 300ms ease, transform 300ms ease 300ms, -webkit-transform 300ms ease 300ms;
     color: rgba(0, 0, 0, 0.85); }
 
+.fins {
+  margin: 0 auto; }
+  .fins.win, .fins.error {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    -webkit-transition: -webkit-transform 2s cubic-bezier(0.74, 0.1, 0.21, 0.97);
+    transition: -webkit-transform 2s cubic-bezier(0.74, 0.1, 0.21, 0.97);
+    transition: transform 2s cubic-bezier(0.74, 0.1, 0.21, 0.97);
+    transition: transform 2s cubic-bezier(0.74, 0.1, 0.21, 0.97), -webkit-transform 2s cubic-bezier(0.74, 0.1, 0.21, 0.97); }
+
 /**
   * what: game buttons / blocks and their relative styles when won/lost/tie
   * why: clear indication to the user asking for inputs and feedback on game (won/lost/tie)
   */
 button.keypad {
+  display: inline-block;
   width: 130px;
   height: 130px;
   margin: 10px;
+  padding: 0;
   border: 0;
   border-radius: 3px;
   background: #323435;
-  box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.7);
-  outline: none; }
+  box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.7);
+  outline: none;
+  box-sizing: border-box; }
   button.keypad#a {
-    background: #303F9F;
-    border-radius: 130px 3px 3px 3px; }
+    background: #303F9F; }
     button.keypad#a:active, button.keypad#a.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
       background: #7986CB; }
   button.keypad#b {
-    background: #C2185B;
-    border-radius: 3px 130px 3px 3px; }
+    background: #C2185B; }
     button.keypad#b:active, button.keypad#b.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
       background: #F06292; }
   button.keypad#c {
-    background: #0097A7;
-    border-radius: 3px 3px 3px 130px; }
+    background: #0097A7; }
     button.keypad#c:active, button.keypad#c.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
       background: #4DD0E1; }
   button.keypad#d {
-    background: #E64A19;
-    border-radius: 3px 3px 130px 3px; }
+    background: #E64A19; }
     button.keypad#d:active, button.keypad#d.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
@@ -163,26 +172,28 @@ button.keypad {
 }*/
 #counter {
   position: absolute;
-  background: #263238;
-  top: 85px;
-  left: 90px;
+  background: #00796B;
+  top: 100px;
+  left: 100px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   line-height: .7em;
   font-size: 1em;
-  box-shadow: inset 0 0 8px 4px rgba(0, 0, 0, 0.7);
-  padding: 10px; }
+  padding: 10px;
+  box-sizing: border-box; }
   #counter h2 {
-    margin: 45px 15px;
+    margin: 30px 15px;
     display: inline-block;
     line-height: .8em;
     text-align: center;
-    width: 3em; }
+    width: 2em; }
   #counter.won {
-    color: #060; }
+    background-color: #4CAF50;
+    color: rgba(255, 255, 255, 0.7); }
   #counter.error {
-    color: #a09; }
+    background-color: #F44336;
+    color: rgba(255, 255, 255, 0.7); }
 
 .strict .toggle {
   font-size: .5em;

@@ -78,6 +78,9 @@ function startButtonHandler(){
     var counter=document.querySelector("#counter");
     counter.classList.remove("error");
     counter.classList.remove("won");
+    document.querySelector('.fins').classList.remove("error");
+    document.querySelector('.fins').classList.remove("win");
+
     prepareBotSequence();
   };
   var start=document.querySelector("#start");
@@ -102,10 +105,12 @@ function processPlayerInput(){
       prepareBotSequence();//to allow key press/click UX effects to finish;
     }else if(result==="incorrect input"){
       playerSequence=""; //give the player another chance to try the sequence
-      counter.innerText=00;
+      counter.innerText="Try again";
       var strict=document.querySelector(".strict .toggle").classList.contains("on");
       counter.parentNode.classList.add("error");
       if(strict){
+        counter.innerText="Game Over";
+        document.querySelector('.fins').classList.add("error");
         playerSequence="";
         botSequence="";
         var start=document.querySelector("#start");
@@ -115,6 +120,7 @@ function processPlayerInput(){
       counter.innerText="Win";
       counter.parentNode.classList.remove("error");
       counter.parentNode.classList.add("won");
+      document.querySelector('.fins').classList.add("win");
       playerSequence="";
       botSequence="";
       var start=document.querySelector("#start");

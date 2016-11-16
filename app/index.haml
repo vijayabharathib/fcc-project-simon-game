@@ -13,21 +13,22 @@
   %div.container
     %h1.brand Simon Game
     %div.game.off
-      %button.keypad#a
-      %button.keypad#b
-      %button.keypad#c
-      %button.keypad#d
+      %div.fins
+        %button.keypad#a
+        %button.keypad#b
+        %button.keypad#c
+        %button.keypad#d
       %div#counter
         %h2 00
-      %div.dashboard
-        %button#start Start
-        %div.strict
-          %span Strict
-          %div.toggle.off
-            %span.on ON
-            %span.off OFF
-        %button.info Help
-      %div.info_panel
-        %p.message The game will play a sequence of button clicks, incrementing a step further each time. You just have to play it back correctly. Strict mode ends the game if you input one incorrect sequence. Normally, the computer allows you to retry the failed sequence.
-        %p.keybindings If you don't want to reach for your mouse/touch, you can also use A, B, C or D.
+    %div.dashboard
+      %button#start Start
+      %div.strict
+        %span Strict
+        %div.toggle.off
+          %span.on ON
+          %span.off OFF
+      %button.info Help
+    %div.info_panel
+      %p.message The game will play a sequence of button clicks, incrementing a step further each time. You just have to play it back correctly. Strict mode ends the game if you input one incorrect sequence. Normally, the computer allows you to retry the failed sequence.
+      %p.keybindings If you don't want to reach for your mouse/touch, you can also use A, B, C or D.
 </html>
