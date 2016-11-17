@@ -28,8 +28,33 @@ describe("Simon", function(){
     expect(simon.botSequence).not.toMatch(/([abcd])\1/);
   });
 
-  it("should evaluate to incorrect input when player input is wrong");
-  it("should evaluate to correct input when player sequence matches");
-  it("should evaluate to success when player completes current sequence");
-  it("should evaluate to win when player completes max length of the game");
+  it("should evaluate to incorrect input when player input is wrong", function(){
+    simon.prepareBotSequence();
+    //sending a char that may not be in bot sequence
+    expect(simon.evaluateGameStatus("e")).toEqual("incorrect input");
+  });
+
+  it("should evaluate to correct input when partial player sequence matches", function(){
+    simon.prepareBotSequence();
+    simon.prepareBotSequence();
+    //sending one char that matches first char in bot sequence
+    expect(simon.evaluateGameStatus(simon.botSequence[0])).toEqual("correct input");
+  });
+
+  it("should evaluate to success when player completes current sequence", function(){
+    simon.prepareBotSequence();
+    simon.prepareBotSequence();
+    //sending a char that may not be in bot sequence
+    expect(simon.evaluateGameStatus(simon.botSequence)).toEqual("success");
+  });
+  it("should evaluate to game off when player inputs before bot starts", function(){
+    //sending a full length that matches bot sequence
+    expect(simon.evaluateGameStatus("a")).toEqual("game off");
+  });
+  it("should evaluate to win when player completes max length of the game", function(){
+    for(var i=0;i<simon.maxLength;i++)
+      simon.prepareBotSequence();
+    //sending a full length that matches bot sequence
+    expect(simon.evaluateGameStatus(simon.botSequence)).toEqual("win");
+  });
 });
