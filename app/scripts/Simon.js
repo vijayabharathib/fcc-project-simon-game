@@ -1,6 +1,10 @@
 function Simon(){
 }
 Simon.prototype.maxLength=6;
+Simon.prototype.getBotSequence=function(){ return this.botSequence;};
+Simon.prototype.clearBotSequence=function(){ this.botSequence="";};
+Simon.prototype.clearPlayerSequence=function(){ this.playerSequence="";};
+
 Simon.prototype.prepareBotSequence=function(){
   var min=97; //code for a
   var max=101; //code for e, e is excluded in random
@@ -16,24 +20,32 @@ Simon.prototype.prepareBotSequence=function(){
   this.botSequence+=c;
 };
 
-Simon.prototype.evaluateGameStatus=function(playerSequence){
+Simon.prototype.preparePlayerSequence=function(c){
+  this.playerSequence = this.playerSequence || "";
+  this.playerSequence+=c;
+};
+
+Simon.prototype.getPlayerSequence=function(){return this.playerSequence;};
+Simon.prototype.evaluateGameStatus=function(strict){
   var result=false;
-  if(!playerSequence)
-    return "no input";
+  if(!this.playerSequence)
+    return "No Input";
   if(!this.botSequence)
-    return "game off";
+    return "Game Off";
 
-  var psLength=playerSequence.length;
+  var psLength=this.playerSequence.length;
   var bsLength=this.botSequence.length;
-  if(psLength==this.maxLength && playerSequence===this.botSequence){
-    result="win";
-  }else if(psLength===bsLength && playerSequence===this.botSequence){
-    result="success";
-  } else if(psLength<bsLength && playerSequence===this.botSequence.substring(0,psLength)){
-    result="correct input";
-  } else if(psLength<=bsLength && playerSequence!==this.botSequence.substring(0,psLength)){
-    result="incorrect input";
-
+  if(psLength==this.maxLength && this.playerSequence===this.botSequence){
+    result="You Win";
+  }else if(psLength===bsLength && this.playerSequence===this.botSequence){
+    result="Next Level";
+  } else if(psLength<bsLength && this.playerSequence===this.botSequence.substring(0,psLength)){
+    result="Correct Input";
+  } else if(psLength<=bsLength && this.playerSequence!==this.botSequence.substring(0,psLength)){
+    if(strict)
+      result="Game Over";
+    else
+      result="Try Again";
   }
   return result;
 };

@@ -8,6 +8,7 @@ var uglify=require('gulp-uglify');
 //var htmlmin=require('gulp-htmlmin');
 var haml=require('gulp-haml');
 var sourcemaps=require('gulp-sourcemaps');
+var jasmine = require('gulp-jasmine');
 gulp.task('style',function() {
 	gulp.src('./app/styles/**/*.scss') //take all .scss files from styles folder
 		.pipe(sass().on('error',sass.logError)) //convert them from sass to css
@@ -47,10 +48,24 @@ gulp.task('hamldown',function(){
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('default',['browserSync','style','scramble','minify','hamldown'],function(){
+gulp.task('default',['browserSync','style','scramble','minify','hamldown','test'],function(){
 	gulp.watch('./app/styles/**/*.scss',['style']);
 	gulp.watch('./app/scripts/**/*.js',['scramble']);
 	gulp.watch('./*.html',['minify']);
 	gulp.watch('./app/*.haml',['hamldown']);
 	gulp.watch("app/*.haml").on('change', browserSync.reload);
+	var filesForTest=['./app/scripts/**/*.js','./spec/simon/**/*Spec.js'];
+	gulp.watch(filesForTest,['test']);
+});
+
+
+gulp.task('watch_tests',['test'],function(){
+	var filesForTest=['./app/scripts/**/*.js','./spec/simon/**/*Spec.js'];
+	gulp.watch(filesForTest,['test']);
+});
+
+
+gulp.task('test', function() {
+	return gulp.src('./spec/simon/**/*Spec.js')
+	  .pipe(jasmine());
 });
