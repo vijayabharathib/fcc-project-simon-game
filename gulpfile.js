@@ -29,7 +29,8 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('scramble',function(){
-	gulp.src('./app/scripts/main.js')
+	//gulp.src('./app/scripts/main.js')
+	gulp.src('./app/scripts/**/*.js')
 		.pipe(sourcemaps.init())
 		//.pipe(uglify())
 		.pipe(sourcemaps.write())

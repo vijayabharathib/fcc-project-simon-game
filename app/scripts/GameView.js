@@ -1,30 +1,41 @@
+function GameView(){
 
-function replayBotSequence(){
+}
+var replayIndex=0;
+GameView.prototype.replayIntervalID;
+GameView.prototype.initiateReplay=function(botSequence){
+  replayIndex=0;
+  window.clearInterval(this.replayIntervalID);
+  this.replayIntervalID=window.setInterval(_replayBotSequence(botSequence),1000);
+};
+
+function _replayBotSequence(botSequence){
+  console.log("replay: "+replayIndex);
   if(replayIndex<=botSequence.length){
     var nextBlockID=botSequence[replayIndex];
     var previousBlockID=botSequence[replayIndex-1];
     if(nextBlockID){
-      sound(nextBlockID);
-      activateBlock(nextBlockID);
+      _sound(nextBlockID);
+      _activateBlock(nextBlockID);
       document.querySelector("#counter h2").innerText=replayIndex+1;
     }
     if(previousBlockID)
-      deactivateBlock(previousBlockID);
+      _deactivateBlock(previousBlockID);
     replayIndex++;
   }else {
-    window.clearInterval(replayIntervalID);
+    window.clearInterval(this.replayIntervalID);
   }
-}
+};
 
-function activateBlock(id){
+function _activateBlock(id){
   document.querySelector("#" + id).classList.add("js-active");
 }
 
-function deactivateBlock(id){
+function _deactivateBlock(id){
   document.querySelector("#" + id).classList.remove("js-active");
 }
 
-function sound(id){
+function _sound(id){
   var audio={
     a: "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
     b: "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3",
@@ -33,38 +44,38 @@ function sound(id){
   };
   var chime=new Audio(audio[id]);
   chime.play();
-}
+};
 
-var gamePadClickHandler=function(){
-  playerSequence+=this.id;
-  sound(this.id);
+GameView.prototype.gamePadClickHandler=function(){
+  controller.processPlayerInput(this.id);
+  simon.preparePlayerSequence(this.id);
+  _sound(this.id);
   var result=evaluateGameStatus();
   var strict=document.querySelector(".strict .toggle").classList.contains("on");
-  advanceTheGame(result,strict);
-}
+  controller.advanceTheGame(result,strict);
+};
 
-var advanceTheGame=function(result){
-  if(result!=="correct input"){
-    simon.clearPlayerSequence();
-  }
+GameView.prototype.startTheGame=function(){
+  var start=document.querySelector("#start");
+  start.innerText="Reset";
+  _resetStatus();
+  controller.initiateTheGame();
+};
 
-  if(result==="Next Level"){
-    updateStatus("Next Level");
-    prepareBotSequence();//to allow key press/click UX effects to finish;
-  }else if(result==="Try Again"){
-    updateStatus("Try again");
-  }elses if(result==="Game Over"){
-      updateStatus("Game Over");
-      simon.clearBotSequence();
-  }else if(result==="You Win"){
-    updateStatus('You Win');
-    simon.clearBotSequence();
-  }else if(result==="Correct Input"){
-    updateStatus(playerSequence.length);
-  }
-}
+function _resetStatus(){
+  var counter=document.querySelector("#counter");
+  counter.classList.remove("error");
+  counter.classList.remove("won");
+};
 
-function updateStatus(text){
+GameView.prototype.toggleStrictMode=function(){
+  var toggle=document.querySelector(".strict .toggle");
+  toggle.classList.toggle("on");
+  toggle.classList.toggle("off");
+  controller.updateStrictMode(toggle.classList.contains("on"));
+};
+
+GameView.prototype.updateStatus=function(text){
   var counter=document.querySelector("#counter>h2");
   if(text=='You Win'){
     counter.parentNode.classList.remove("error");
@@ -73,4 +84,4 @@ function updateStatus(text){
     counter.parentNode.classList.add("error");
   }
   counter.innerText=text;
-}
+};

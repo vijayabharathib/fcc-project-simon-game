@@ -26,6 +26,7 @@ Simon.prototype.preparePlayerSequence=function(c){
 };
 
 Simon.prototype.getPlayerSequence=function(){return this.playerSequence;};
+
 Simon.prototype.evaluateGameStatus=function(strict){
   var result=false;
   if(!this.playerSequence)
@@ -50,4 +51,5 @@ Simon.prototype.evaluateGameStatus=function(strict){
   return result;
 };
 
-module.exports=Simon;
+//for jasmine
+//module.exports=Simon;

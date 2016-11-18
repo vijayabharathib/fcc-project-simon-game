@@ -1,3 +1,4 @@
+module.imports '../../app/scripts/Simon.js';
 describe("Simon", function(){
   var Simon = require('../../app/scripts/Simon');
   var simon;
