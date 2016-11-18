@@ -1,31 +1,21 @@
 function GameView(){
-
 }
-var replayIndex=0;
-GameView.prototype.replayIntervalID;
+var replayIndex=0,
+    replayIntervalID,
+    isPlayback=false;
+
 GameView.prototype.initiateReplay=function(botSequence){
   replayIndex=0;
-  window.clearInterval(this.replayIntervalID);
-  this.replayIntervalID=window.setInterval(_replayBotSequence(botSequence),1000);
+  window.clearInterval(replayIntervalID);
+  isPlayback=true;
+  replayIntervalID=window.setInterval(_replayBotSequence,1000,botSequence,this);
+  //inside the _replayBotSequence function called by setInterval
+  //this === window object (NOT gameview)
+  //hence current 'this' object which equals gameview has to be passed
+  //hence, this passed as last parameter in the setInterval
 };
 
-function _replayBotSequence(botSequence){
-  console.log("replay: "+replayIndex);
-  if(replayIndex<=botSequence.length){
-    var nextBlockID=botSequence[replayIndex];
-    var previousBlockID=botSequence[replayIndex-1];
-    if(nextBlockID){
-      _sound(nextBlockID);
-      _activateBlock(nextBlockID);
-      document.querySelector("#counter h2").innerText=replayIndex+1;
-    }
-    if(previousBlockID)
-      _deactivateBlock(previousBlockID);
-    replayIndex++;
-  }else {
-    window.clearInterval(this.replayIntervalID);
-  }
-};
+
 
 function _activateBlock(id){
   document.querySelector("#" + id).classList.add("js-active");
@@ -47,12 +37,10 @@ function _sound(id){
 };
 
 GameView.prototype.gamePadClickHandler=function(){
+  if(isPlayback)
+    return; //playback in progress..
   controller.processPlayerInput(this.id);
-  simon.preparePlayerSequence(this.id);
   _sound(this.id);
-  var result=evaluateGameStatus();
-  var strict=document.querySelector(".strict .toggle").classList.contains("on");
-  controller.advanceTheGame(result,strict);
 };
 
 GameView.prototype.startTheGame=function(){
@@ -84,4 +72,22 @@ GameView.prototype.updateStatus=function(text){
     counter.parentNode.classList.add("error");
   }
   counter.innerText=text;
-};
+}
+
+function _replayBotSequence(botSequence,gameView){
+  if(replayIndex<=botSequence.length){
+    var nextBlockID=botSequence[replayIndex];
+    var previousBlockID=botSequence[replayIndex-1];
+    if(nextBlockID){
+      _sound(nextBlockID);
+      _activateBlock(nextBlockID);
+    }
+    if(previousBlockID)
+      _deactivateBlock(previousBlockID);
+    replayIndex++;
+  }else{
+    window.clearInterval(replayIntervalID);
+    isPlayback=false;
+    gameView.updateStatus("Your turn");
+  }
+}

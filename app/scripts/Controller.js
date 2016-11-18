@@ -13,13 +13,16 @@ Controller.prototype.initiateTheGame=function(){
   gameView.initiateReplay(simon.getBotSequence());
 };
 Controller.prototype.advanceTheGame=function(result){
-  if(result!=="correct input"){
+  console.log("bot: "+simon.getBotSequence()+
+    ";plyer:"+simon.getPlayerSequence()
+    +";result:"+result);
+  if(result!=="Correct Input"){
     simon.clearPlayerSequence();
   }
   if(result==="Next Level"){
     gameView.updateStatus("Next Level");
     simon.prepareBotSequence();//to allow key press/click UX effects to finish;
-    gameview.initiateReplay();
+    gameView.initiateReplay(simon.getBotSequence());
   }else if(result==="Try Again"){
     gameView.updateStatus("Try again");
   }else if(result==="Game Over"){
@@ -35,6 +38,6 @@ Controller.prototype.advanceTheGame=function(result){
 
 Controller.prototype.processPlayerInput=function(id){
   simon.preparePlayerSequence(id);
-  var result=simon.evaluateGameStatus(strict);
+  var result=simon.evaluateGameStatus(this.strict);
   controller.advanceTheGame(result);
 }

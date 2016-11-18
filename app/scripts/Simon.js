@@ -21,7 +21,9 @@ Simon.prototype.prepareBotSequence=function(){
 };
 
 Simon.prototype.preparePlayerSequence=function(c){
-  this.playerSequence = this.playerSequence || "";
+  if(typeof this.playerSequence==="undefined")
+    this.playerSequence="";
+    
   this.playerSequence+=c;
 };
 
@@ -33,7 +35,6 @@ Simon.prototype.evaluateGameStatus=function(strict){
     return "No Input";
   if(!this.botSequence)
     return "Game Off";
-
   var psLength=this.playerSequence.length;
   var bsLength=this.botSequence.length;
   if(psLength==this.maxLength && this.playerSequence===this.botSequence){
@@ -52,4 +53,4 @@ Simon.prototype.evaluateGameStatus=function(strict){
 };
 
 //for jasmine
-//module.exports=Simon;
+module.exports=Simon;
