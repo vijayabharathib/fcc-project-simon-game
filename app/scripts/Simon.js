@@ -1,6 +1,6 @@
 function Simon(){
 }
-Simon.prototype.maxLength=6;
+Simon.prototype.maxLength=20;
 Simon.prototype.getBotSequence=function(){ return this.botSequence;};
 Simon.prototype.clearBotSequence=function(){ this.botSequence="";};
 Simon.prototype.clearPlayerSequence=function(){ this.playerSequence="";};
@@ -23,7 +23,7 @@ Simon.prototype.prepareBotSequence=function(){
 Simon.prototype.preparePlayerSequence=function(c){
   if(typeof this.playerSequence==="undefined")
     this.playerSequence="";
-    
+
   this.playerSequence+=c;
 };
 

@@ -6,8 +6,10 @@ This app can be accessed through [https://vijayabharathib.github.io/fcc-project-
 
 **Challenges**  
 *As usual, few additional challenges I set up for myself*
-- [x] No jQuery or Bootstrap or any other library for that matter (how else one can learn?)
+- [x] No js/css library/framework for the game to run. All handcrafted.
 - [x] Accessibility through keyboard
+- [x] Better separation of concerns (MVC design pattern)
+- [x] Some level of TDD (with Jasmine)
 
 
 [comment]: http://justfor.comments "Back reference to links"

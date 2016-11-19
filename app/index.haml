@@ -9,7 +9,7 @@
   <script src="public/scripts/GameView.js?v=00"></script>
   <script src="public/scripts/Simon.js?v=00"></script>
   <script src="public/scripts/mvc.js?v=00"></script>
-  
+
   <link rel="stylesheet" href="public/styles/main.css?v=02" type="text/css" />
   <link rel="icon" type="image/png" href="./favicon.png?v=01" sizes="128x128">
 </head>
@@ -23,7 +23,7 @@
         %button.keypad#c
         %button.keypad#d
       %div#counter
-        %h2 00
+        %h2 Well, let's tap some time away!
     %div.dashboard
       %button#start Start
       %div.strict
@@ -31,8 +31,9 @@
         %div.toggle.off
           %span.on ON
           %span.off OFF
-      %button.info Help
-    %div.info_panel
-      %p.message The game will play a sequence of button clicks, incrementing a step further each time. You just have to play it back correctly. Strict mode ends the game if you input one incorrect sequence. Normally, the computer allows you to retry the failed sequence.
-      %p.keybindings If you don't want to reach for your mouse/touch, you can also use A, B, C or D.
+      %button.help Help
+    %div.info_panel.is-hidden
+      %button.close X
+      %p.message The game bot will highlight a sequence of blocks, incrementing a step further each time. You just have to play it back correctly. Get 20 sequence correct to win the game. Strict mode ends the game if you input one incorrect sequence. But otherwise, the bot allows you to retry the failed sequence as many times as you want. Go kill some time!
+      %p.keybindings If you have a keyboard you can also use A, B, C or D.
 </html>

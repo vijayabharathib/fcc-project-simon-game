@@ -15,8 +15,16 @@ document.addEventListener("DOMContentLoaded",function(e){
   startButtonHandler();
   playerClickHandler();
   setupKeyHandlers();
-});
+  var help=document.querySelector(".dashboard .help");
+  help.addEventListener("click",function(){
+    gameView.showInfoPanel();
+  });
 
+  var closeButton=document.querySelector(".info_panel .close");
+  closeButton.addEventListener("click",function(){
+    gameView.hideInfoPanel();
+  });
+});
 
 /**
   * start the game
@@ -50,7 +58,6 @@ function playerClickHandler(){
 function setupKeyHandlers(){
   document.onkeypress=function(event){
     var c=event.key.toLowerCase();
-    console.log('keypress:'+c);
     switch(c){
       case 'a':
       case 'b':
@@ -59,7 +66,14 @@ function setupKeyHandlers(){
         var block=document.querySelector("#" +c);
         block.click();
         break;
+      case ' ':
+        var startButton=document.querySelector("#start");
+        startButton.click();
+        break;
+      case '?':
+        var help=document.querySelector(".dashboard .help");
+        help.click();
+        break;
     }
   };
-
 }

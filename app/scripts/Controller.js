@@ -9,19 +9,20 @@ Controller.prototype.updateStrictMode=function(flag){
 Controller.prototype.initiateTheGame=function(){
   simon.clearBotSequence();
   simon.prepareBotSequence();
-  console.log("bot: " + simon.getBotSequence());
   gameView.initiateReplay(simon.getBotSequence());
 };
 Controller.prototype.advanceTheGame=function(result){
-  console.log("bot: "+simon.getBotSequence()+
-    ";plyer:"+simon.getPlayerSequence()
-    +";result:"+result);
   if(result!=="Correct Input"){
     simon.clearPlayerSequence();
   }
   if(result==="Next Level"){
-    gameView.updateStatus("Next Level");
+    var successGreeting=["Nice!","Not Bad!","Wow!","Keep it up!","Good!"];
+    var successInform=["Wait For Your Turn.","Focus on the sequence.","You can do it.","Let's beat that bot."];
+    var a=Math.floor(Math.random()*successGreeting.length)
+    var b=Math.floor(Math.random()*successInform.length)
+    gameView.updateStatus(successGreeting[a] + " " + successInform[b]);
     simon.prepareBotSequence();//to allow key press/click UX effects to finish;
+    gameView.disableBlocks();
     gameView.initiateReplay(simon.getBotSequence());
   }else if(result==="Try Again"){
     gameView.updateStatus("Try again");

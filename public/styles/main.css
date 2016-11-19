@@ -25,6 +25,7 @@ h4 {
   max-width: 320px;
   margin: 0 auto;
   padding: 10px;
+  position: relative;
   box-sizing: border-box; }
   @media (min-width: 321px) {
     .container {
@@ -142,52 +143,45 @@ button.keypad {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 1.5em;
   height: 2em;
-  color: rgba(255, 255, 255, 0.7); }
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 10px; }
   .dashboard button {
+    font-size: 1em;
     border: 0;
     border-radius: 3px;
     background: #323435;
     color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.7);
-    font-size: .5em;
-    padding: 5px; }
+    padding: 10px;
+    width: 80px; }
 
-/*#counter {
-  position: absolute;
-  margin: 0;
-  line-height: .7em;
-  font-size: 1em;
-  box-shadow: inset 0 0 8px 4px $color-black-transparent-70;
-  padding: 10px;
-  width: 1em;
-  border-radius: 5px;
-  &.won{
-    color: $color-green;
-  }
-  &.error{
-    color: $color-red;
-  }
-}*/
 #counter {
   position: absolute;
   background: #00796B;
-  top: 100px;
-  left: 100px;
-  width: 100px;
-  height: 100px;
+  top: 75px;
+  left: 75px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   line-height: .7em;
   font-size: 1em;
   padding: 10px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
   #counter h2 {
-    margin: 30px 15px;
+    margin: 0;
     display: inline-block;
     line-height: .8em;
-    text-align: center;
-    width: 2em; }
+    text-align: center; }
   #counter.won {
     background-color: #4CAF50;
     color: rgba(255, 255, 255, 0.7); }
@@ -195,36 +189,71 @@ button.keypad {
     background-color: #F44336;
     color: rgba(255, 255, 255, 0.7); }
 
-.strict .toggle {
-  font-size: .5em;
-  display: inline-block; }
-  .strict .toggle span {
-    padding: 5px;
-    display: inline-block;
-    -webkit-transition: color 300ms ease, background 300ms ease;
-    transition: color 300ms ease, background 300ms ease;
+.strict {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .strict > span {
+    margin-right: auto; }
+  .strict .toggle {
+    font-size: .7em;
+    display: inline-block; }
+    .strict .toggle span {
+      padding: 5px 3px;
+      display: inline-block;
+      -webkit-transition: color 300ms ease, background 300ms ease;
+      transition: color 300ms ease, background 300ms ease;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      width: 2em; }
+      .strict .toggle span:nth-of-type(odd) {
+        border-radius: 3px 0 0 3px; }
+      .strict .toggle span:nth-of-type(even) {
+        border-radius: 0 3px 3px 0; }
+    .strict .toggle.on .on {
+      background: rgba(255, 255, 255, 0.7);
+      color: #323435;
+      -webkit-transition: color 300ms ease, background 300ms ease;
+      transition: color 300ms ease, background 300ms ease; }
+    .strict .toggle.on .off {
+      color: #323435;
+      background: #323435;
+      -webkit-transition: color 300ms ease, background 300ms ease;
+      transition: color 300ms ease, background 300ms ease; }
+    .strict .toggle.off .on {
+      background: #323435;
+      color: #323435;
+      -webkit-transition: color 300ms ease, background 300ms ease;
+      transition: color 300ms ease, background 300ms ease; }
+    .strict .toggle.off .off {
+      -webkit-transition: color 300ms ease, background 300ms ease;
+      transition: color 300ms ease, background 300ms ease; }
+
+.info_panel {
+  padding: 1em;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  background: #263238;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 440px;
+  margin: 5px; }
+  .info_panel.is-displayed {
+    display: block; }
+  .info_panel.is-hidden {
+    display: none; }
+  .info_panel .close {
+    float: right;
+    color: rgba(255, 255, 255, 0.7);
+    background: none;
+    border: 0;
     cursor: pointer;
-    border: 1px solid #323435;
-    width: 2em; }
-    .strict .toggle span:nth-of-type(odd) {
-      border-radius: 3px 0 0 3px; }
-    .strict .toggle span:nth-of-type(even) {
-      border-radius: 0 3px 3px 0; }
-  .strict .toggle.on .on {
-    background: rgba(255, 255, 255, 0.7);
-    color: #323435;
-    -webkit-transition: color 300ms ease, background 300ms ease;
-    transition: color 300ms ease, background 300ms ease; }
-  .strict .toggle.on .off {
-    color: #323435;
-    background: #323435;
-    -webkit-transition: color 300ms ease, background 300ms ease;
-    transition: color 300ms ease, background 300ms ease; }
-  .strict .toggle.off .on {
-    background: #323435;
-    color: #323435;
-    -webkit-transition: color 300ms ease, background 300ms ease;
-    transition: color 300ms ease, background 300ms ease; }
-  .strict .toggle.off .off {
-    -webkit-transition: color 300ms ease, background 300ms ease;
-    transition: color 300ms ease, background 300ms ease; }
+    font-size: 1.8em; }
+  .info_panel .message {
+    margin-top: 1em;
+    font-size: 1.4em; }
