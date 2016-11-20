@@ -1,29 +1,33 @@
 /**
   * wait until the doc is ready to obey orders
   */
-  var simon; //start with blank
+  var simon;
   var gameView;
   var controller;
 document.addEventListener("DOMContentLoaded",function(e){
   /**
     * once content is loaded
     */
-  simon=new Simon();
-  gameView=new GameView();
-  controller=new Controller();
+  simon=new Simon(); //the bot
+  gameView=new GameView(); //the view (UI & UX)
+  controller=new Controller(); //the controller between view and bot
 
+  //bind start button, player input and keyboard access
   startButtonHandler();
   playerClickHandler();
   setupKeyHandlers();
+
+  // bind method for help button
   var help=document.querySelector(".dashboard .help");
   help.addEventListener("click",function(){
     gameView.showInfoPanel();
   });
-
+  //one more bind, this is to close info panel
   var closeButton=document.querySelector(".info_panel .close");
   closeButton.addEventListener("click",function(){
     gameView.hideInfoPanel();
   });
+
 });
 
 /**
@@ -37,7 +41,9 @@ function startButtonHandler(){
 
 
 /**
-
+  * take player input
+  * send it to gamepad click handler
+  * to be processed by controller
   */
 function playerClickHandler(){
 
@@ -53,8 +59,14 @@ function playerClickHandler(){
   toggles[1].onclick=gameView.toggleStrictMode;
 }
 
-
-
+/**
+  * keyboard access
+  * a,b,c,d for blocks
+  * space for start / reset game
+  * ? or / for help
+  * x to close help
+  * s to toggle strict mode 
+  */
 function setupKeyHandlers(){
   document.onkeypress=function(event){
     var c=event.key.toLowerCase();
@@ -64,6 +76,9 @@ function setupKeyHandlers(){
       case 'c':
       case 'd':
         var block=document.querySelector("#" +c);
+        if(!gameView.isPlayback)
+          gameView._activateBlock(c);
+        window.setTimeout(gameView._deactivateBlock,600,c);
         block.click();
         break;
       case ' ':
@@ -71,9 +86,17 @@ function setupKeyHandlers(){
         startButton.click();
         break;
       case '?':
+      case '/':
         var help=document.querySelector(".dashboard .help");
         help.click();
         break;
+      case 'x':
+        var closeButton=document.querySelector(".info_panel .close");
+        closeButton.click();
+        break;
+      case 's':
+          gameView.toggleStrictMode();
+          break;
     }
   };
 }

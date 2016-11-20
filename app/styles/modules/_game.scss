@@ -3,8 +3,8 @@
   * why: prominant display for the user
   */
 .brand {
-  margin-top: 0; //reset h2
   font-size: 3em;
+  margin-top: 0; //reset h2
   text-align: center;
   text-shadow: 0 -1px $color-black-transparent-70,
   0 -2px $color-black-transparent-70; //embedded effect
@@ -15,53 +15,17 @@
   * why: show / hide based on status of the game
   */
 .game {
-  position: relative; //parent for shutter that is absolutely positioned
   margin: 0 auto; //center align
-
-  .shutter {
-    position: absolute; //overlay on top of game board
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: .5em;
-    //reverse the effect of closing shutter when the game is on
-    transition: color 300ms ease, transform 300ms ease 300ms;
-    border-radius: 5px;
-    background: $color-black-transparent-85;
-    font-size: 2em;
-    box-sizing: border-box;
-
-    .message {
-      text-align: center;
-    }
-
-    .keybindings { //keyboard shortcut text
-      font-size: .45em;
-      text-align: center;
-    }
-  }
-
-  &.on { //close shutter when game starts
-    .shutter {
-      /* text within the shutter shrinks on scale transform
-       * it doesn't look good, hence color is removed first
-       * and then the element is shrinked (after 300ms wait out)
-       */
-      transform: scaleY(0);
-      transition: color 300ms ease, transform 300ms ease 300ms;
-      color: $color-black-transparent-85;
-    }
-  }
-
+  position: relative; //parent for shutter that is absolutely positioned
 }
 
-.fins{
+//to rotate the game block group
+//to simulate a fan spin effect
+.fins {
   margin: 0 auto;
-  &.win,
-  &.error {
+  &.rotate {
     transform: rotate(360deg);
-    transition: transform 2s cubic-bezier(.74,.1,.21,.97);
+    transition: transform 1s cubic-bezier(.74, .1, .21, .97);
   }
 }
 
@@ -71,15 +35,15 @@
   */
 button.keypad {
   display: inline-block;
-  width: 130px;
-  height: 130px;
-  margin: 10px;
+  background: $color-shadow;
   padding: 0;
   border: 0;
+  width: 130px;
   border-radius: 3px;
-  background: $color-shadow;
-  box-shadow: 0 0 6px 3px $color-black-transparent-70;
+  height: 130px;
+  margin: 10px;
   outline: none;
+  box-shadow: 0 0 6px 3px $color-black-transparent-70;
   box-sizing: border-box;
   &#a {
     background: $color-block-a;
@@ -108,14 +72,13 @@ button.keypad {
   &#d {
     background: $color-block-d;
     //border-radius: 3px 3px 175px 3px;
-    &:active,&.js-active{
+    &:active, &.js-active {
       transition: background 150ms ease;
       background: $color-block-d-light;
     }
   }
 
 }
-
 
 .dashboard {
   position: relative;
@@ -135,12 +98,12 @@ button.keypad {
     padding: 10px;
     width: 80px;
   }
-
 }
 
 #counter {
   position: absolute;
   background: $color-counter-default;
+  background-image: linear-gradient(to top, $color-counter-default, $color-white);
   top: 75px;
   left: 75px;
   width: 150px;
@@ -148,7 +111,6 @@ button.keypad {
   border-radius: 50%;
   line-height: .7em;
   font-size: 1em;
-  //box-shadow: 0 0 6px 3px $color-black-transparent-70;
   padding: 10px;
   box-sizing: border-box;
   display: flex;
@@ -160,6 +122,7 @@ button.keypad {
     display: inline-block;
     line-height: .8em;
     text-align: center;
+    color: $color-counter-font;
   }
 
   &.won{
@@ -220,6 +183,7 @@ button.keypad {
   }
 }
 
+//help panel for the user
 .info_panel{
   padding: 1em;
   border: 1px solid $color-white-transparent-70;
@@ -228,7 +192,7 @@ button.keypad {
   position: absolute;
   top: 0;
   left: 0;
-  height: 440px;
+  height: 500px;
   margin: 5px;
   &.is-displayed{
     display: block;
@@ -236,16 +200,28 @@ button.keypad {
   &.is-hidden{
     display: none;
   }
-  .close{
+  .close{ //close x button
     float: right;
     color: $color-white-transparent-70;
     background: none;
     border: 0;
     cursor: pointer;
     font-size: 1.8em;
+    margin-top: -15px;
+    margin-right: -15px;
   }
-  .message{
-    margin-top: 1em;
-    font-size: 1.4em;
+  .message{ //user info
+    margin: 0;
+    margin-top: 5px;
+    font-size: 1.3em;
+  }
+  ul{ //keybindings
+    padding: 0; //clear default 40px padding
+    list-style: none;
+    font-size: .9em;
+    pre{
+      margin: 0; //reset defaults
+      margin-bottom: 5px;
+    }
   }
 }
