@@ -127,11 +127,21 @@ button.keypad {
 
   &.won{
     background-color: $color-counter-success;
-    color: $color-white-transparent-70;
+    background-image: linear-gradient(to top,
+      darken($color-counter-success, 10%) 70%,
+      lighten($color-counter-success, 10%));
+    h2 {
+      color: $color-white-transparent-70;
+    }
   }
   &.error{
     background-color: $color-counter-error;
-    color: $color-white-transparent-70;
+    background-image: linear-gradient(to top,
+      darken($color-counter-error, 10%) 70%,
+      lighten($color-counter-error, 10%));
+    h2 {
+      color: $color-white-transparent-70;
+    }
   }
 }
 

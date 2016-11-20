@@ -196,10 +196,16 @@ button.keypad {
     color: #607D8B; }
   #counter.won {
     background-color: #4CAF50;
-    color: rgba(255, 255, 255, 0.7); }
+    background-image: -webkit-linear-gradient(bottom, #3d8b40 70%, #6ec071);
+    background-image: linear-gradient(to top, #3d8b40 70%, #6ec071); }
+    #counter.won h2 {
+      color: rgba(255, 255, 255, 0.7); }
   #counter.error {
     background-color: #F44336;
-    color: rgba(255, 255, 255, 0.7); }
+    background-image: -webkit-linear-gradient(bottom, #ea1c0d 70%, #f77066);
+    background-image: linear-gradient(to top, #ea1c0d 70%, #f77066); }
+    #counter.error h2 {
+      color: rgba(255, 255, 255, 0.7); }
 
 .strict {
   display: -webkit-box;
