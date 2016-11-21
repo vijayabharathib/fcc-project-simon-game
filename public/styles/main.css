@@ -121,25 +121,25 @@ button.keypad {
     button.keypad#a:active, button.keypad#a.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
-      background: #7986CB; }
+      background: #9FA8DA; }
   button.keypad#b {
     background: #C2185B; }
     button.keypad#b:active, button.keypad#b.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
-      background: #F06292; }
+      background: #F48FB1; }
   button.keypad#c {
     background: #0097A7; }
     button.keypad#c:active, button.keypad#c.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
-      background: #4DD0E1; }
+      background: #80DEEA; }
   button.keypad#d {
     background: #E64A19; }
     button.keypad#d:active, button.keypad#d.js-active {
       -webkit-transition: background 150ms ease;
       transition: background 150ms ease;
-      background: #FF8A65; }
+      background: #FFAB91; }
 
 .dashboard {
   position: relative;

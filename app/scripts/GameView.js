@@ -147,7 +147,7 @@ GameView.prototype.clearFinRotation=function(){
   var fins=document.querySelector(".fins");
   fins.classList.remove("rotate");
 };
-//end of rotation 
+//end of rotation
 
 /**
   * replay bot sequence block by block
@@ -172,7 +172,7 @@ function _replayBotSequence(botSequence,gameView){
   }else{ //when replayIndex exceeds bot sequence length, cancell callbacks
     window.clearInterval(gameView.replayIntervalID);
     gameView.isPlayback=false;
-    gameView.updateStatus("Your turn, go!");
+    gameView.updateStatus("Your turn, get " + (gameView.replayIndex-1) + " in order.");
     gameView.enableBlocks(); //allow user to provide inputs
   }
 }
